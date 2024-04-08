@@ -76,20 +76,17 @@ a {
     cursor: pointer;
 }
 
-.menu-item:first-child,
-.submenu-item:first-child {
+:is(.menu-item, .submenu-item):first-child{
     border-top-right-radius: inherit;
     border-top-left-radius: inherit;
 }
 
-.menu-item:last-child,
-.submenu-item:last-child {
+:is(.menu-item, .submenu-item):last-child {
     border-bottom-right-radius: inherit;
     border-bottom-left-radius: inherit;
 }
 
-.menu-item:hover,
-.submenu-item:hover {
+:is(.menu-item, .submenu-item):hover {
     background-color: pink;
 }
 
@@ -150,7 +147,7 @@ i {
     position: absolute;
     top: 0;
     left: 100%;
-    transform: translateX(-12px);
+    transform: translate(-12px, 0);
 }
 
 .submenu-item:hover,
@@ -161,7 +158,7 @@ i {
 .menu-item:hover > .submenu-toggle + .submenu {
     visibility: visible;
     opacity: 1;
-    transform: translateX(8px);
+    transform: translate(8px, 0);
 }
 
 .dropdown-toggle {
@@ -174,6 +171,42 @@ i {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.dropdown-toggle::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: white  transparent transparent transparent;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.menu-item.dropdown > a.submenu-toggle::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width:5px 0 5px 5px;
+    border-color: transparent transparent transparent rgb(201, 21, 201);
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.submenu-item.dropdown > a.submenu-toggle::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-color: transparent transparent transparent rgb(201, 21, 201);
+    margin-left: 5px;
+    vertical-align: middle;
 }
 
 #full-name,
@@ -272,20 +305,20 @@ border-color: purple;
 .comment {
     color: #ffffff;
     font-size: 17px;
-    text-align: center; /* Center-align the basic info */
+    text-align: center; 
     margin-bottom: 2%;
     margin-top: 10px;
     margin-right: 50%;
 }
 
 #message {
-    width: 100%; /* Set width to 100% */
+    width: 100%; 
     padding: 3px; 
     margin-bottom: 10px; 
     border: 2px solid #ffffff;
     border-radius: 5px; 
     background-color: rgba(255, 255, 255, 0.2); 
-    color: #ffffff; /* text color */
+    color: #ffffff; 
     font-size: 16px; 
 }
 
